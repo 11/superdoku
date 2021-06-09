@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="en" />
+    <meta charset='en' />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}" />
     {% block head %}
     {% endblock %}
   </head>
   <body>
-    {% block contnet %}
+    {% block content %}
     {% endblock %}
   </body>
 </html>
