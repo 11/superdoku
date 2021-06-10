@@ -11,5 +11,6 @@ def encrypt(pwd):
 
 
 def decrpyt(pwd, salt):
+    pepper = os.environ.get('PEPPER')
     seasoned_pwd = str(pwd + pepper).encode()
     return bcrypt.hashpw(seasoned_pwd, salt)

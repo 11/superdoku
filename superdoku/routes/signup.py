@@ -1,9 +1,16 @@
 import json
 
-from flask import Blueprint, render_template, request, Response
+from http import HTTPStatus as status
 
-from extensions import db
+from flask import (
+    Blueprint,
+    Response,
+    render_template,
+    request as req,
+)
+
 from common import password as pwd_helper
+from extensions import db
 from models.user import User
 
 
@@ -17,13 +24,18 @@ def signup_page():
 
 @bp.route('/', methods=['POST'])
 def signup():
-    first = request.form.get('firstname')
-    last = request.form.get('lastname')
-    email = request.form.get('email')
-    pwd = request.form.get('password')
+    first = req.form.get('firstname')
+    last = req.form.get('lastname')
+    email = req.form.get('email')
+    pwd = req.form.get('password')
+
     if (not (first and last and email and pwd)):
         resp = { 'message': 'must submit all forms values' }
-        return Response(json.dumps(resp), status=400, mimetype='application/json')
+        return Response(
+            json.dumps(resp),
+            status=status.BAD_REQUEST,
+            mimetype='application/json'
+        )
 
     salt, hash = pwd_helper.encrypt(pwd)
     user = User(email, first, last, salt, hash)
@@ -31,4 +43,8 @@ def signup():
     db.session.commit()
 
     resp = { 'message': 'success' }
-    return Response(json.dumps(resp), status=201, mimetype='application/json')
+    return Response(
+        json.dumps(resp),
+        status=status.CREATED,
+        mimetype='application/json'
+    )

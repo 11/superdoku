@@ -18,3 +18,6 @@ class User(db.Model):
         self.last_name = last_name
         self.salt = salt
         self.hash = hash
+
+    def __repr__(self):
+        return f'email: {self.email}\nfirst: {self.first_name}\nlast: {self.last_name}\ncreated_at:{self.created_at}'

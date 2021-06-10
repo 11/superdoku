@@ -2,8 +2,7 @@ from flask import Flask
 
 from extensions import db, migrate
 
-from models import sudoku
-from models import user
+from models import *
 
 from routes.index import bp as index_bp
 from routes.login import bp as login_bp
@@ -20,6 +19,8 @@ def create_app(config_file='config.py'):
 
     with app.app_context():
         db.init_app(app)
+        migrate.init_app(app)
+
         db.create_all()
         db.session.commit()
 
