@@ -1,13 +1,13 @@
 from flask import Blueprint, render_template
 
-login_blueprint = Blueprint('login_blueprint',  __name__)
+bp = Blueprint('login_blueprint',  __name__, url_prefix='/login')
 
 
-@login_blueprint.route('/login', methods=['GET'])
+@bp.route('/', methods=['GET'])
 def render():
     return render_template('login.jinja')
 
 
-@login_blueprint.route('/login', methods=['POST'])
+@bp.route('/', methods=['POST'])
 def sign_in():
     pass

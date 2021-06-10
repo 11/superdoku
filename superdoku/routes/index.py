@@ -2,9 +2,9 @@ from flask import Blueprint
 from flask.templating import render_template
 
 
-index_blueprint = Blueprint('index_blueprint', __name__)
+bp = Blueprint('index_blueprint', __name__, url_prefix='/')
 
 
-@index_blueprint.route('/')
+@bp.route('/')
 def homepage():
     return render_template('index.jinja')

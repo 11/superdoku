@@ -2,23 +2,26 @@ from flask import Flask
 
 from extensions import db, migrate
 
-from routes.index import index_blueprint as index_route
-from routes.login import login_blueprint as login_route
-from routes.signup import signup_blueprint as signup_route
+from models import sudoku
+from models import user
+
+from routes.index import bp as index_bp
+from routes.login import bp as login_bp
+from routes.signup import bp as signup_bp
 
 
 def create_app(config_file='config.py'):
     app = Flask(__name__)
     app.config.from_pyfile(config_file)
 
-    app.register_blueprint(index_route)
-    app.register_blueprint(login_route)
-    app.register_blueprint(signup_route)
+    app.register_blueprint(index_bp)
+    app.register_blueprint(login_bp)
+    app.register_blueprint(signup_bp)
 
     with app.app_context():
-        migrate.init_app(app)
         db.init_app(app)
         db.create_all()
+        db.session.commit()
 
     return app
 
