@@ -1,6 +1,4 @@
-bin/**
-include/**
-lib/**
 **.pyc
 __pycache__/
 .DS_Store
+venv/*
