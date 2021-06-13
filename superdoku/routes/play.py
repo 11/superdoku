@@ -11,7 +11,7 @@ from flask import (
 from models.sudoku import Sudoku
 
 
-bp = Blueprint('sudoku_route', __name__, url_prefix='/play')
+bp = Blueprint('play_route', __name__, url_prefix='/play')
 
 
 @bp.route('/<id>', methods=['GET'])

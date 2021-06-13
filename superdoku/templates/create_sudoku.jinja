@@ -1,0 +1,13 @@
+{%  extends 'base.jinja' %}
+
+{%  block content %}
+<form method='POST' action='/sudoku/'>
+	<label>puzzle string</label>
+	<input name='puzzle' type='input' />
+	<br>
+	<label>difficulty</label>
+	<input name='difficulty' type='input' />
+
+    <input type='submit' />
+</form>
+{%  endblock %}

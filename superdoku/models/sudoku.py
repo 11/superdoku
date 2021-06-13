@@ -1,10 +1,10 @@
 from extensions import db
 
 
-class Sudoku(db.Column):
+class Sudoku(db.Model):
     __tablename__ = 'sudoku'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     puzzle = db.Column(db.String(81), unique=True, nullable=False)
     difficulty = db.Column(db.Integer, nullable=False, default=1)
 

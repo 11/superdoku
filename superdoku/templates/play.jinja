@@ -1,0 +1,12 @@
+{% extends 'base.jinja' %}
+{% block content %}
+
+{{ puzzle }}
+
+<script>
+    window.onload = function() {
+        let puzzleString = '{{puzzle}}'
+        console.log(puzzleString)
+    }
+</script>
+{% endblock%}

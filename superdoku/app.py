@@ -7,6 +7,8 @@ from models import *
 from routes.index import bp as index_bp
 from routes.login import bp as login_bp
 from routes.signup import bp as signup_bp
+from routes.sudoku import bp as sudoku_bp
+from routes.play import bp as play_bp
 
 
 def create_app(config_file='config.py'):
@@ -16,6 +18,8 @@ def create_app(config_file='config.py'):
     app.register_blueprint(index_bp)
     app.register_blueprint(login_bp)
     app.register_blueprint(signup_bp)
+    app.register_blueprint(sudoku_bp)
+    app.register_blueprint(play_bp)
 
     with app.app_context():
         db.init_app(app)
